@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ariyan Rabbi (Dʌʀĸ-Nɘt) - Matrix Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Fira Code', monospace;
+      background: black;
+      color: #c9d1d9;
+    }
+
+    #matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 350px;
+      background: #161b22cc;
+      border: 2px solid #00ffa4;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 30px #00ffa4aa;
+      backdrop-filter: blur(6px);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(-50%, -50%) translateY(0px);
+      }
+      50% {
+        transform: translate(-50%, -50%) translateY(-10px);
+      }
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #00ffa4;
+      box-shadow: 0 0 15px #00ffa4;
+      object-fit: cover;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    .profile-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #00ffcc;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      color: #00ffa4;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    p.bio {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      line-height: 1.5;
+      color: #8b949e;
+    }
+
+    .links a {
+      display: inline-block;
+      background: #0d1117;
+      color: #58a6ff;
+      border: 1.5px solid #58a6ff;
+      border-radius: 8px;
+      padding: 8px 15px;
+      margin: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background: #58a6ff;
+      color: #0d1117;
+      box-shadow: 0 0 10px #58a6ff;
+    }
+
+    footer {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: #444c56;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container">
+  <img
+    src="https://c.top4top.io/p_3427rpxgl2.jpg"
+    alt="Ariyan Rabbi"
+    class="profile-img"
+  />
+  <h1>Ariyan Rabbi <br> (Dʌʀĸ-Nɘt)</h1>
+  <p class="bio">শিক্ষানির্ভর হ্যাকিং টুল নির্মাতা | Ethical Hacking | Python Developer | Hacker UI Lover</p>
+  <div class="links">
+    <a href="https://facebook.com/share/12Ju91Lznxb/" target="_blank">Facebook</a>
+    <a href="https://t.me/DARK_NET_40" target="_blank">Telegram</a>
+    <a href="https://github.com/DARK-NET-403" target="_blank">GitHub</a>
+  </div>
+  <footer>© 2025 Ariyan Rabbi (Dʌʀĸ-Nɘt). All rights reserved.</footer>
+</div>
+
+<script>
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const characters = 'অআইঈউঊঋএঐওঔকখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমযরলশষসহড়ঢ়য়1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const fontSize = 18;
+  const columns = Math.floor(canvas.width / fontSize);
+  const drops = Array(columns).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#00ff00';
+    ctx.font = fontSize + 'px monospace';
+
+    drops.forEach((y, i) => {
+      const text = characters.charAt(Math.floor(Math.random() * characters.length));
+      ctx.fillText(text, i * fontSize, y * fontSize);
+
+      if (y * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    });
+  }
+
+  setInterval(drawMatrix, 45);
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+</body>
+</html>
